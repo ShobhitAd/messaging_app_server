@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS Room;
+DROP TABLE IF EXISTS Message;
+
+CREATE TABLE Message(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sender varchar(200) NOT NULL,
+    contents varchar(1000) NOT NULL
+);
+
+CREATE TABLE Room(
+    id INTEGER NOT NULL,
+    msgId int UNIQUE NOT NULL,
+    FOREIGN KEY (msgId) REFERENCES Message(id)
+);
