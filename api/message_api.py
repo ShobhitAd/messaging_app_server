@@ -7,15 +7,10 @@ message_api = Blueprint('message_api', __name__)
 @message_api.route('/api/v1/messages', methods=['GET'])
 def get_messages_route():
 
-    # get JSON request data
-    data = request.get_json()
-    # db = DataBase()
+    if request.args.get('roomId') is None:
+        return jsonify("You did not provide the necessary fields. Missing 'roomId'"), 422
 
-    msg, status = validateRequestParams(data, ['roomId'])
-    if status != 200:
-        return jsonify(msg), status
-
-    roomId = str(data['roomId'])
+    roomId = str(request.args.get('roomId'))
 
     # Database operations
     connection = DataBase.getDB()
