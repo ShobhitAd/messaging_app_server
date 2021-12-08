@@ -9,6 +9,8 @@ hostname = '127.0.0.1'
 port = 8080
 
 app.register_blueprint(api.message_api)
+app.register_blueprint(api.admin_api)
+
 app.secret_key = '\xb9\xafq=\xc8\xb5\xd2\x019<\xde\xd2\x90/\xe2z\xb7\xcc\xc1y\x02S\xe4'
 
 @app.teardown_appcontext

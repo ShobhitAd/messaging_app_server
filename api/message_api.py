@@ -72,4 +72,9 @@ def send_message_route():
 
     connection.commit()
 
-    return jsonify(), 200
+    message = {
+            "msgId": msgId,
+            "sender": sender,
+            "contents": contents
+        }
+    return jsonify(message), 200
