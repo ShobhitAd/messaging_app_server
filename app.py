@@ -1,10 +1,12 @@
 # import netifaces
 from flask import Flask
+from flask_cors import CORS
 import api
 
 from common import DataBase
 
 app = Flask(__name__)
+CORS(app)
 hostname = '127.0.0.1'
 port = 8080
 
