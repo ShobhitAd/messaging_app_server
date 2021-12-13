@@ -6,6 +6,8 @@ message_api = Blueprint('message_api', __name__)
 
 @message_api.route('/api/v1/messages', methods=['GET'])
 def get_messages_route():
+    # Used to send the most recent n messages in the response
+    NUM_RECENT_MESSAGES = 5
 
     if request.args.get('roomId') is None:
         return jsonify("You did not provide the necessary fields. Missing 'roomId'"), 422
@@ -24,7 +26,7 @@ def get_messages_route():
     print(result)
 
     messages = []
-    for msg in result:
+    for msg in result[-NUM_RECENT_MESSAGES:] :
         messages.append({
             "msgId": msg[0],
             "sender": msg[1],
